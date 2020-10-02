@@ -42,6 +42,7 @@ def delete(request, codename):
 @csrf_exempt
 def create_report(request):
     data = extract_data_POST(request)
+    print(f"create_report({data}")
 
     try:
         title = data['title']

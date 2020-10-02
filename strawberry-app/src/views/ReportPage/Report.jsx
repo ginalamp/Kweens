@@ -10,7 +10,8 @@ class Report extends Component {
 
   state = {
     title: '',
-    description: ''
+    description: '',
+    abuse_type: ''
   }
 
 
@@ -21,8 +22,7 @@ class Report extends Component {
     })
   }
 
-
-  createReport = (event) => {
+  submit = (event) => {
     axios.post(baseUrl.concat('create_report'), {
       'title': this.state.title,
       'description': this.state.description
@@ -67,6 +67,7 @@ class Report extends Component {
                       id={`dropdown-variants-Secondary`}
                       variant='secondary'
                       title='Choose'
+                      onChange={this.handleInputChange}
                     >
                       <Dropdown.Item>Gender-based Violence</Dropdown.Item>
                       <Dropdown.Item>Child Abuse</Dropdown.Item>
@@ -125,16 +126,17 @@ class Report extends Component {
                       type="button"
                       className="btn-warning"
                       onClick={this.redirectToGroupPage}
-                    >
+                      >
                       Cancel
                   </Button>{" "}
+                */}
 									<Button
 										type="button"
 										className="btn-danger"
-										onClick={this.delete}
-									>
-										Delete Group
-                  </Button>{" "} */}
+										onClick={this.submit}
+									> 
+										Submit Report
+                  </Button>{" "}
                 </form>
               </Col>
             </Row>
