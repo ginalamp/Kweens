@@ -1,17 +1,40 @@
-//TODO main page here
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Container, Row, Col, Image } from 'react-bootstrap';
+
+import Strawberry from '../../assets/images/strawberry.png';
+import StrawberryIcon from '../../assets/images/strawberry_icon.png';
+
+var backgroundStyle = {
+  position: 'absolute',
+  width: "100%",
+  height: "100vh",
+  backgroundImage: "url(" + Strawberry + ")"
+};
 
 class MainPage extends Component {
   render () {
     console.log("TEST")
     return (
-      <style>
-	body {background-color: powderblue;}
-      </style>
-      <div className="main">
-        <h3>Hello</h3>
-	<h3>Hi there</h3>
-      </div>
+      <section style={ backgroundStyle }>
+        <div className="main">
+          <Container>
+            <Row >
+              <Col>
+                <img
+                  className="center"
+                  src={StrawberryIcon}
+                  alt="strawberry"
+                  loading="meep"
+                  height="700"
+                  />
+              </Col>
+              <Col>
+                <h3>Hello</h3>
+              </Col>
+            </Row>
+          </Container>
+        </div>
+      </section>
     )
   }
 }
