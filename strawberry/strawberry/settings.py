@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels',
     'game',
+    'chat',
 ]
 
 MIDDLEWARE = [
@@ -69,6 +71,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'strawberry.wsgi.application'
+# Channels
+ASGI_APPLICATION = 'strawberry.routing.application'
 
 
 # Database
