@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^logon/', views.logon),
     url(r'^locate/', views.get_nearby),
     url(r'^logoff/', views.logoff),
+    url(r'create_report', views.create_report),
 ]
