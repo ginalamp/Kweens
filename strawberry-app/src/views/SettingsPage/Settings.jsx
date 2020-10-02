@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Image, Button } from 'react-bootstrap';
 import { Link} from "react-router-dom";
+import history from '../../history';
 
 import Strawberry from '../../assets/images/strawberry.png';
 
@@ -12,6 +13,31 @@ var backgroundStyle = {
 };
 
 class Settings extends Component {
+
+  toChat = (event) => {
+    history.push({
+      pathname: '/chat',
+      state: {
+      }
+    })
+  }
+
+  toReport = (event) => {
+    history.push({
+      pathname: '/report',
+      state: {
+      }
+    })
+  }
+
+  toHelp = (event) => {
+    history.push({
+      pathname: '/help',
+      state: {
+      }
+    })
+  }
+
   render () {
     return (
       <section style={ backgroundStyle }>
@@ -31,34 +57,29 @@ class Settings extends Component {
 
                   </div>
 
-                <Link to={"/chat"}>
                   <Button
                     className="button_chat btn-block"
                     variant="danger"
+                    onClick={this.toChat}
                     >
                     Chat
                   </Button>
-                </Link>
-
                   <br></br>
-                  <Link to={"/report"}>
-                    <Button
-                      className="button_report btn-block"
-                      variant="danger"
-                      >
-                      Report
-                    </Button>
-                  </Link>
+                  <Button
+                    className="button_report btn-block"
+                    variant="danger"
+                    onClick={this.toReport}
+                    >
+                    Report
+                  </Button>
                   <br></br>
-
-                  <Link to={"/help"}>
-                    <Button
-                      className="button_help btn-block"
-                      variant="danger"
-                      >
-                      Self Help
-                    </Button>
-                </Link>
+                  <Button
+                    className="button_help btn-block"
+                    variant="danger"
+                    onClick={this.toHelp}
+                    >
+                    Self Help
+                  </Button>
                 </form>
               </div>
 
