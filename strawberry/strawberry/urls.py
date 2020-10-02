@@ -15,10 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from game import views
-admin.autodiscover()
+from django.conf.urls import url, include
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hello/<name>', views.hello, name='hello'),
+    url(r'^', include('game.urls')),
+
+
 ]
