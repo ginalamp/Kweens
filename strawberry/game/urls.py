@@ -5,5 +5,8 @@ from game import views
 admin.autodiscover()
 
 urlpatterns = [
-    url(r'^hello/', views.hello),
+    url(r'^help/', views.help),
+    url(r'^logon/', views.logon),
+    url(r'^locate/', views.get_nearby),
+    url(r'^logoff/', views.logoff),
 ]
