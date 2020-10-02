@@ -16,7 +16,7 @@ class NavBar extends Component {
           <img
             className="d-inline-block align-top"
             src={StrawberryIcon}
-            width="45"
+            width="40"
             height="45"
             alt=""
             loading="lazy" />

@@ -3,18 +3,17 @@ from django.http import HttpResponse
 from django.http.response import JsonResponse
 from django.shortcuts import render
 import datetime
+from math import sin, cos, sqrt, atan2, radians
+import random
+import string
 
 from django.views.decorators.csrf import csrf_exempt
 
 from game.models import User
 
-def hello(request):
-   today = datetime.datetime.now().date()
-   return render(request, "hello.html", {"today" : today})
-
 def logon(request, x, y):
     #codename = random gen string
-    name = ""
+    name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
     
     u = User(
         codename = name,
@@ -23,20 +22,56 @@ def logon(request, x, y):
     )
    
     u.save()
-    return name
-    
-# TODO: implement
+    return HttpResponse(name)
+
+def help(request, codename):
+    u = User.objects.get(codename = codename)
+    u.help_me = True
+    u.save()
+    return HttpResponse("turned on")
+
 def get_nearby(request, x, y):
     objects = User.objects.all()
+    saved = list()
    
     #sort through objects and save nearby ones
-    
-    #use function to determine location from long-lat coordinates
+    for user in objects:
+        lat = user.lat; lon = user.lon
+        if distance_between(x,y, lat,lon) <= 5: #if within 5km from each other
+            saved.append(user)
+            
+    return HttpResponse(get_codenames(saved))
     
 #delete a user after log off
-def delete(request, codename):
+def logoff(request, codename):
     user = User.objects.get(codename=codename)
     user.delete()
+    return HttpResponse("logged off")
+    
+def distance_between(x1, y1, x2, y2):
+    # approximate radius of earth in km
+    R = 6373.0
+
+    lat1 = radians(int(x1))
+    lon1 = radians(int(y1))
+    lat2 = radians(int(x2))
+    lon2 = radians(int(y2))
+
+    dlon = lon2 - lon1
+    dlat = lat2 - lat1
+
+    a = sin(dlat / 2)**2 + cos(lat1) * cos(lat2) * sin(dlon / 2)**2
+    c = 2 * atan2(sqrt(a), sqrt(1 - a))
+
+    distance = R * c
+    return distance #in kms
+
+def get_codenames(l): #list of users
+    s = ""
+    for item in l:
+        name = item.codename
+        s = s + name + ", "
+    return s[:-2]
 
 
 @csrf_exempt
