@@ -13,7 +13,6 @@ var backgroundStyle = {
 
 class MainPage extends Component {
   render () {
-    console.log("TEST")
     return (
       <section style={ backgroundStyle }>
         <div className="main">

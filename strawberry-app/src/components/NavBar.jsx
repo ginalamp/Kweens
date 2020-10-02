@@ -10,6 +10,9 @@ class NavBar extends Component {
     return (
       <nav className="navbar navbar-dark">
         <a className="navbar-brand" href="/">
+          <font size="+3">Click a Strawberry</font>
+        </a>
+        <a className="strawberry" href="/settings">
           <img
             className="d-inline-block align-top"
             src={StrawberryIcon}
@@ -17,7 +20,6 @@ class NavBar extends Component {
             height="45"
             alt=""
             loading="lazy" />
-          <font size="+3">Click a Strawberry</font>
         </a>
       </nav>
     );
