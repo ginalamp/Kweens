@@ -52,10 +52,10 @@ def distance_between(x1, y1, x2, y2):
     # approximate radius of earth in km
     R = 6373.0
 
-    lat1 = radians(x1)
-    lon1 = radians(y1)
-    lat2 = radians(x2)
-    lon2 = radians(y2)
+    lat1 = radians(int(x1))
+    lon1 = radians(int(y1))
+    lat2 = radians(int(x2))
+    lon2 = radians(int(y2))
 
     dlon = lon2 - lon1
     dlat = lat2 - lat1
