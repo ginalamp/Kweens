@@ -6,4 +6,5 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'^hello/', views.hello),
+    url(r'create_report', views.create_report),
 ]
