@@ -7,6 +7,8 @@ import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import Settings from './views/SettingsPage/Settings';
 import Report from './views/ReportPage/Report';
+import Chat from './views/Chat/Chat';
+import HelpPage from './views/HelpPage/HelpPage';
 
 export default class Routes extends Component {
   render() {
@@ -17,6 +19,8 @@ export default class Routes extends Component {
           <Route exact path='/' component={MainPage} />
           <Route exact path='/settings' component={Settings} />
           <Route exact path='/report' component={Report} />
+          <Route exact path='/help' component={HelpPage} />
+          <Route exact path='/chat' component={Chat} />
         </Switch>
         <Footer />
       </Router>
