@@ -74,7 +74,7 @@ def get_codenames(l): #list of users
     return s[:-2]
 
 
-@csrf_exempt
+# @csrf_exempt
 def create_report(request):
     data = extract_data_POST(request)
     print(f"create_report({data}")

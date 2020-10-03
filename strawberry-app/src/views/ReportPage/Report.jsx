@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Container, Row, Col, Button, DropdownButton, Dropdown, ButtonGroup } from 'react-bootstrap';
-// import { DropdownButton, Dropdown } from 'react-bootstrap/DropdownButton'
-// import Dropdown from 'react-bootstrap/Dropdown'
-import history from '../../history';
+import { Container, Row, Col, Button, InputGroup, FormControl, Form} from 'react-bootstrap';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
 
 const baseUrl = '127.0.0.1:8000/'
 class Report extends Component {
@@ -12,25 +11,60 @@ class Report extends Component {
   state = {
     title: '',
     description: '',
-    abuse_type: ''
+    abuse_type: 'gbv',
+    lon: 0,
+    lat: 0,
+    address: '',
+
   }
 
 
   handleInputChange = (event) => {
+    console.log(event);
     event.preventDefault()
     this.setState({
       [event.target.name]: event.target.value
     })
   }
 
+  // Handle dropdown menu
+  handleChange = (event) => {
+    console.log("value = ", event.target.value);
+    this.setState({abuse_type: event.target.value});
+  }
+
+  // location from browser access
+  getLocation = (event) => {
+    navigator.geolocation.getCurrentPosition( (position) => {
+      console.log("lat =", position.coords.latitude, "lon =", position.coords.longitude);
+      this.setState({
+        lat: position.coords.latitude,
+        lon: position.coords.longitude
+      })
+    });
+  }
+
+
   submit = (event) => {
-    alert("SUCCESS: Your report has been submitted.")
-    history.push({
-      pathname: '/',
-      state: {
-      }
-    })
-    window.location.reload(false);
+    console.log("submitting", this.state)
+    // try {
+    //   axios.post('127.0.0.1:8000/create_report/', {
+    //     title: this.state.title,
+    //     description: this.state.description
+    //   })
+    //     .then(res => {
+    //       console.log("res.data: ", res.data);
+    //       if (res.data.msg === "Success") {
+    //         console.log("woohoooo...")
+    //       } else {
+    //         console.log("Failed", res.data.msg)
+    //       }
+    //     })
+    // } catch (err) {
+    //   console.log(err);
+    // }
+    
+    //TODO chloe - histry push to the success page
   }
 
 
@@ -54,84 +88,78 @@ class Report extends Component {
                       onChange={this.handleInputChange}
                     />
                   </div>
-                  <div className="form-group">
-                    <label>Type of abuse</label>
-                    <br></br>
-                    <DropdownButton
-                      as={ButtonGroup}
-                      key={'Secondary'}
-                      id={`dropdown-variants-Secondary`}
-                      variant='secondary'
-                      title='Choose'
+
+                  <label>Type of abuse</label>
+                  <InputGroup className="mb-3">
+                    <InputGroup.Prepend>
+                      <select value={this.state.value} onChange={this.handleChange}>
+                        <option value="GBV">GBV</option>
+                        <option value="Domestic Abuse">Domestic Abuse</option>
+                        <option value="Child Abuse">Child Abuse</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </InputGroup.Prepend>
+                    <FormControl 
+                      aria-describedby="basic-addon1" 
+                      placeholder="Other"
+                      name="abuse_type"
                       onChange={this.handleInputChange}
-                    >
-                      <Dropdown.Item>Gender-based Violence</Dropdown.Item>
-                      <Dropdown.Item>Child Abuse</Dropdown.Item>
-                      <Dropdown.Item active>
-                        Domestic Violence
-                    </Dropdown.Item>
-                    </DropdownButton>
-                  </div>
+                    />
+                  </InputGroup>
+
                   <div className="form-group">
                     <label>Description</label>
                     <input
                       type="text"
                       className="form-control"
                       placeholder="Description"
-                      value={this.state.descirption}
+                      value={this.state.description}
                       name="description"
                       onChange={this.handleInputChange}
-                    />
+                      />
                   </div>
-                  {/* <div className="form-group">
-										<label>Group name</label>
-										<input
-											type="text"
-											className="form-control"
-											placeholder="Group Name"
-											value={this.state.group_name}
-											name="group_name"
-											onChange={this.handleInputChange}
-										/>
-										{this.state.errors.group_name ? (
-											<div style={errorstyle}>
-												{this.state.errors.group_name}
-											</div>
-										) : null}
-									</div>
-									<div className="form-group">
-										<label>Group description</label>
-										<input
-											type="text"
-											className="form-control"
-											placeholder="Description"
-											value={this.state.description}
-											name="description"
-											onChange={this.handleInputChange}
-										/>
-									</div>
 
-									<Button
-										type="button"
-										className="btn-success"
-										onClick={this.submit}
-									>
-										Submit
-                  </Button>{" "}
-                    <Button
-                      type="button"
-                      className="btn-warning"
-                      onClick={this.redirectToGroupPage}
-                      >
-                      Cancel
-                  </Button>{" "}
-                */}
-									<Button
-										type="button"
-										className="btn-danger"
-										onClick={this.submit}
-									> 
-										Submit Report
+                    <label>Address</label>
+                  <InputGroup className="mb-3">
+                    <FormControl 
+                      aria-describedby="basic-addon1" 
+                      placeholder="Address"
+                      onChange={this.handleInputChange}
+                      name="address"
+                    />
+                    <InputGroup.Prepend>
+                      <Button 
+                        variant="outline-secondary" 
+                        onClick={this.getLocation}
+                        >Get Current Location</Button>
+                    </InputGroup.Prepend>
+                  </InputGroup>
+
+
+                  <label>Who is being abused</label>
+                  <InputGroup className="mb-3">
+                    <InputGroup.Prepend>
+                      <select value={this.state.value} onChange={this.handleChange}>
+                        <option value="Me">Me</option>
+                        <option value="Someone living with me">Someone living with me</option>
+                        <option value="Someone else">Someone else</option>
+                      </select>
+                    </InputGroup.Prepend>
+                  </InputGroup>
+
+                  <label>Upload evidence</label>
+                  <Form.File 
+                    id="custom-file"
+                    label="Custom file input"
+                    custom
+                  />
+
+                  <Button
+                    type="button"
+                    className="btn-danger"
+                    onClick={this.submit}
+                  >
+                    Submit Report
                   </Button>{" "}
                 </form>
               </Col>
