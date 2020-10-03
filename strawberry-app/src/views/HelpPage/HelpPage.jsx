@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Image, Button } from 'react-bootstrap';
+import ReactPlayer from "react-player";
 
 import Strawberry from '../../assets/images/strawberry.png';
 
@@ -17,19 +18,37 @@ class HelpPage extends Component {
       <section style={ backgroundStyle }>
         <div className="help">
           <br></br>
-          <br></br>
           <Container>
             <Row className='align-items-center'>
               <Col>
                 <div className='card shadow p-3 mb-5  bg-white rounded'>
                   <form>
                     <h3>Helplines</h3>
-                    <br></br>
+                    <Row>
+                      <Col>
+                        <ReactPlayer
+                          width="100%"
+                          url="https://www.youtube.com/watch?v=K_CCA7KAou4"
+                          />
+                      </Col>
+                      <Col>
+                        <ReactPlayer
+                          width="100%"
+                          url="https://www.youtube.com/watch?v=QfySIkxdBDw"
+                          />
+                      </Col>
+                    </Row>
                     <h5>In general</h5>
                     <a
                       className="for_women"
                       href="https://www.for-women.co.za/help-line">
                       For Women
+                    </a>
+                    <br></br>
+                    <a
+                      className="help_guide"
+                      href="https://www.helpguide.org/articles/abuse/getting-out-of-an-abusive-relationship.htm">
+                      Help Guide
                     </a>
                     <br></br>
                     <br></br>

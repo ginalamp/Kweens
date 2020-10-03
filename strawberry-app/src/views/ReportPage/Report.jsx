@@ -3,8 +3,19 @@ import axios from 'axios';
 import { Container, Row, Col, Button, InputGroup, FormControl, Form} from 'react-bootstrap';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
+import history from '../../history';
 
-const baseUrl = '127.0.0.1:8000/'
+import Strawberry from '../../assets/images/strawberry.png';
+
+const baseUrl = '127.0.0.1:8000/';
+
+var backgroundStyle = {
+  position: 'absolute',
+  width: "100%",
+  height: "100vh",
+  backgroundImage: "url(" + Strawberry + ")"
+};
+
 class Report extends Component {
 
 
@@ -47,6 +58,13 @@ class Report extends Component {
 
   submit = (event) => {
     console.log("submitting", this.state)
+    alert("SUCCESS: Your report has been submitted.")
+    history.push({
+      pathname: '/',
+      state: {
+      }
+    })
+    window.location.reload(false);
     // try {
     //   axios.post('127.0.0.1:8000/create_report/', {
     //     title: this.state.title,
@@ -63,13 +81,14 @@ class Report extends Component {
     // } catch (err) {
     //   console.log(err);
     // }
-    
+
     //TODO chloe - histry push to the success page
   }
 
 
   render() {
     return (
+      <section style={ backgroundStyle }>
       <div>
         <Container>
           <div className="card shadow p-3 mb-5 mt-5 bg-white rounded">
@@ -99,8 +118,8 @@ class Report extends Component {
                         <option value="Other">Other</option>
                       </select>
                     </InputGroup.Prepend>
-                    <FormControl 
-                      aria-describedby="basic-addon1" 
+                    <FormControl
+                      aria-describedby="basic-addon1"
                       placeholder="Other"
                       name="abuse_type"
                       onChange={this.handleInputChange}
@@ -121,15 +140,15 @@ class Report extends Component {
 
                     <label>Address</label>
                   <InputGroup className="mb-3">
-                    <FormControl 
-                      aria-describedby="basic-addon1" 
+                    <FormControl
+                      aria-describedby="basic-addon1"
                       placeholder="Address"
                       onChange={this.handleInputChange}
                       name="address"
                     />
                     <InputGroup.Prepend>
-                      <Button 
-                        variant="outline-secondary" 
+                      <Button
+                        variant="outline-secondary"
                         onClick={this.getLocation}
                         >Get Current Location</Button>
                     </InputGroup.Prepend>
@@ -148,7 +167,7 @@ class Report extends Component {
                   </InputGroup>
 
                   <label>Upload evidence</label>
-                  <Form.File 
+                  <Form.File
                     id="custom-file"
                     label="Custom file input"
                     custom
@@ -167,7 +186,7 @@ class Report extends Component {
           </div>
         </ Container>
       </div>
-
+      </section>
     )
   }
 
