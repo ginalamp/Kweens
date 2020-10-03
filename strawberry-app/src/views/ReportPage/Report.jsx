@@ -47,22 +47,24 @@ class Report extends Component {
 
   submit = (event) => {
     console.log("submitting", this.state)
-    try {
-      axios.post('127.0.0.1:8000/create_report/', {
-        title: this.state.title,
-        description: this.state.description
-      })
-        .then(res => {
-          console.log("res.data: ", res.data);
-          if (res.data.msg === "Success") {
-            console.log("woohoooo...")
-          } else {
-            console.log("Failed", res.data.msg)
-          }
-        })
-    } catch (err) {
-      console.log(err);
-    }
+    // try {
+    //   axios.post('127.0.0.1:8000/create_report/', {
+    //     title: this.state.title,
+    //     description: this.state.description
+    //   })
+    //     .then(res => {
+    //       console.log("res.data: ", res.data);
+    //       if (res.data.msg === "Success") {
+    //         console.log("woohoooo...")
+    //       } else {
+    //         console.log("Failed", res.data.msg)
+    //       }
+    //     })
+    // } catch (err) {
+    //   console.log(err);
+    // }
+    
+    //TODO chloe - histry push to the success page
   }
 
 
