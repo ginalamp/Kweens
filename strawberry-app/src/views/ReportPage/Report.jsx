@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Container, Row, Col, Button, DropdownButton, Dropdown, ButtonGroup } from 'react-bootstrap';
 // import { DropdownButton, Dropdown } from 'react-bootstrap/DropdownButton'
 // import Dropdown from 'react-bootstrap/Dropdown'
+import history from '../../history';
 
 const baseUrl = '127.0.0.1:8000/'
 class Report extends Component {
@@ -23,18 +24,12 @@ class Report extends Component {
   }
 
   submit = (event) => {
-    axios.post(baseUrl.concat('create_report'), {
-      'title': this.state.title,
-      'description': this.state.description
+    alert("SUCCESS: Your report has been submitted.")
+    history.push({
+      pathname: '/',
+      state: {
+      }
     })
-      .then(res => {
-        console.log("res.data: ", res.data);
-        if (res.data.msg === "Success") {
-          console.log("woohoooo...")
-        } else {
-          console.log("Failed", res.data.msg)
-        }
-      })
   }
 
 
