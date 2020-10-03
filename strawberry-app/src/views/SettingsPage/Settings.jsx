@@ -20,6 +20,7 @@ class Settings extends Component {
       state: {
       }
     })
+    window.location.reload(false);
   }
 
   toReport = (event) => {
@@ -28,6 +29,7 @@ class Settings extends Component {
       state: {
       }
     })
+    window.location.reload(false);
   }
 
   toHelp = (event) => {
@@ -36,6 +38,7 @@ class Settings extends Component {
       state: {
       }
     })
+    window.location.reload(false);
   }
 
   render () {

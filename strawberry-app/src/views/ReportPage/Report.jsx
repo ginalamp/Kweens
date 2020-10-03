@@ -30,6 +30,7 @@ class Report extends Component {
       state: {
       }
     })
+    window.location.reload(false);
   }
 
 
