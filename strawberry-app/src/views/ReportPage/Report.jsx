@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Container, Row, Col, Button, InputGroup, FormControl, Form} from 'react-bootstrap';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
+import history from '../../history';
 
 const baseUrl = '127.0.0.1:8000/'
 class Report extends Component {
@@ -47,6 +48,13 @@ class Report extends Component {
 
   submit = (event) => {
     console.log("submitting", this.state)
+    alert("SUCCESS: Your report has been submitted.")
+    history.push({
+      pathname: '/',
+      state: {
+      }
+    })
+    window.location.reload(false);
     // try {
     //   axios.post('127.0.0.1:8000/create_report/', {
     //     title: this.state.title,
