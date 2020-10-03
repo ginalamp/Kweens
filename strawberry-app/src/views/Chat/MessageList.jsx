@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Message from './Message'
+import './Chat.css';
 
 class MessageList extends React.Component {
     componentWillUpdate() {
