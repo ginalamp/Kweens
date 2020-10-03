@@ -27,14 +27,14 @@ class HelpPage extends Component {
                     <Row>
                       <Col>
                         <ReactPlayer
-                          width="80%"
-                          height="50%"
+                          width="100%"
                           url="https://www.youtube.com/watch?v=K_CCA7KAou4"
                           />
                       </Col>
                       <Col>
                         <ReactPlayer
-                          url="https://www.youtube.com/watch?v=K_CCA7KAou4"
+                          width="100%"
+                          url="https://www.youtube.com/watch?v=QfySIkxdBDw"
                           />
                       </Col>
                     </Row>
